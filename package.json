@@ -1,28 +1,42 @@
 {
-  "name": "js-data-structures",
-  "version": "1.0.0",
+  "name": "@rfearing/js-data-structures",
+  "version": "0.1.0",
   "description": "Examples of Data Structures in JavaScript",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --config jestconfig.json",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "tslint -p tsconfig.json"
+    "lint": "tslint -p tsconfig.json",
+    "prepare" : "npm run build",
+    "prepublishOnly" : "npm test && npm run lint",
+    "preversion" : "npm run lint",
+    "version" : "npm run format && git add -A src",
+    "postversion" : "git push && git push --tags"
   },
-  "files": ["lib/**/*"],
+  "publishConfig": {
+    "@rfearing:registry": "https://npm.pkg.github.com"
+  },
+  "files": [
+    "lib/**/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rfearing/js-data-structures.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ricardo Fearing",
   "license": "GPL",
   "bugs": {
     "url": "https://github.com/rfearing/js-data-structures/issues"
   },
   "homepage": "https://github.com/rfearing/js-data-structures#readme",
   "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "jest": "^27.3.1",
     "prettier": "^2.4.1",
+    "ts-jest": "^27.0.7",
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.4.4"
