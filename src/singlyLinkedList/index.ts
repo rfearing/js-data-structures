@@ -134,7 +134,13 @@ export class SinglyLinkedList<T> {
 	 * @param {number} index - Where the node is located in the list
 	 */
 	set(value: T, index: number) {
-		// TODO
+		// We can utilize the logic from our get method
+		let foundNode = this.get(index);
+		if (!foundNode) {
+			return null;
+		}
+		foundNode.setValue(value);
+		return foundNode;
 	}
 
 	/**

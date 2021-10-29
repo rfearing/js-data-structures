@@ -61,7 +61,12 @@ test('SinglyLinkedList get method correctly returns the value of a node at the c
 	expect(newList.get(10)).toBeNull();
 });
 
-test.todo('SinglyLinkedList set method correctly sets the value of a node at the correct index of the list');
+test('SinglyLinkedList set method correctly sets the value of a node at the correct index of the list', () => {
+	newList.set('example', 1);
+	const newValue = newList.get(1);
+	expect(newValue?.getValue()).toEqual('example');
+});
+
 test.todo('SinglyLinkedList insert method correctly inserts a node at the correct index of the list');
 test.todo('SinglyLinkedList remove method correctly removes a node from the correct index of the list');
 test.todo('SinglyLinkedList reverse method correctly reverses the order of the nodes in the list');
