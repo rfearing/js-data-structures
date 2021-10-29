@@ -24,7 +24,10 @@ Each Data Structure will have it's own README describing the data structure. Hop
 - [ ] Hash Table
 - [ ] Graph
 
+I'm utilizing the [Wiki page as a "lessons learned" section][lessons-learned]. Hopefully it'll help future me, and whoever stumbles upon this repo.
+
 <!-- Links -->
 [datastructures-js]:https://datastructures-js.github.io/
 [js-algo]:https://github.com/trekhleb/javascript-algorithms
+[lessons-learned]:https://github.com/rfearing/js-data-structures/wiki/What-I-learned-along-the-way
 
