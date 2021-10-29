@@ -15,7 +15,7 @@ export class SinglyLinkedNode<T> {
 		return this.value;
 	}
 
-	setNext(next: SinglyLinkedNode<T>) {
+	setNext(next?: SinglyLinkedNode<T>) {
 		if (next && !(next instanceof SinglyLinkedNode)) {
       throw new Error('setNext expects a SinglyLinkedNode or null');
     }
