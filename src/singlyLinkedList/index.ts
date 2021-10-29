@@ -116,11 +116,10 @@ export class SinglyLinkedList<T> {
 	 * @returns {SinglyLinkedNode | null}
 	 */
 	get(index: number) {
-		if(this.isEmpty() || index > this.length) {
+		if(this.isEmpty() || index >= this.length || index < 0) {
 			return null;
 		}
 		let current = this.head;
-
 		// If index is 0, we'll never loop
 		for(let i = 0; i < index; i++) {
 			current = current?.getNext() || null;
@@ -132,6 +131,7 @@ export class SinglyLinkedList<T> {
 	 * Set a node at the current position.
 	 * @param {T} value - Value to replace at index.
 	 * @param {number} index - Where the node is located in the list
+	 * @returns {SinglyLinkedNode | null}
 	 */
 	set(value: T, index: number) {
 		// We can utilize the logic from our get method
@@ -149,15 +149,48 @@ export class SinglyLinkedList<T> {
 	 * @param {number} index - Where the node is located in the list
 	 */
 	insert(value: T, index: number) {
-		// TODO
+		if (index > this.length || index < 0) {
+			throw new Error('The index was outside of the List');
+		}
+
+		if (index === 0) {
+			return !!this.unshift(value);
+		}
+
+		if (index === this.length) {
+			return !!this.push(value);
+		}
+
+		const newNode = new Node(value);
+		const previous = this.get(index - 1);
+		if (previous) {
+			newNode.setNext(previous.getNext());
+			previous.setNext(newNode);
+		}
+
+		this.length++;
+		return true;
 	}
 
 	/**
 	 * Remove a node from the list at a given index.
 	 * @param index - The index of the node we want to remove.
+	 * @returns {SinglyLinkedNode | null} - The removed node.
 	 */
 	remove(index: number) {
-		// TODO
+		// Get head, tail cases first:
+		if (index === 0) {
+			return this.shift();
+		}
+		if (index === this.length - 1) {
+			return this.pop();
+		}
+
+		const previous = this.get(index - 1);
+		const removed = previous?.getNext();
+		previous?.setNext(removed?.getNext());
+		this.length--;
+		return removed;
 	}
 
 	/**

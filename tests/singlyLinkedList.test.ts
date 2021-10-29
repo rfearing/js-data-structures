@@ -67,6 +67,30 @@ test('SinglyLinkedList set method correctly sets the value of a node at the corr
 	expect(newValue?.getValue()).toEqual('example');
 });
 
-test.todo('SinglyLinkedList insert method correctly inserts a node at the correct index of the list');
-test.todo('SinglyLinkedList remove method correctly removes a node from the correct index of the list');
+test('SinglyLinkedList insert method correctly inserts a node at the correct index of the list', () => {
+	const currentLength = newList.length;
+	newList.insert('Test', currentLength);
+	// Correctly sets if tail
+	expect(newList.tail?.getValue()).toEqual('Test');
+	expect(newList.length).toEqual(currentLength + 1);
+	// Correctly sets if head
+	expect(newList.insert('Lorem', 0));
+	expect(newList.head?.getValue()).toEqual('Lorem');
+	// Correctly sets in middle
+	newList.insert('Foo', 2);
+	expect(newList.get(2)?.getValue()).toEqual('Foo');
+	// Outside of list scope:
+	expect(() => newList.insert('Bar', -1)).toThrowError();
+});
+test('SinglyLinkedList remove method correctly removes a node from the correct index of the list', () => {
+	const previousOne = newList.get(1);
+	const previousThree = newList.get(3);
+	const previousLength = newList.length;
+	newList.remove(2);
+	// Expect everything to shift over one:
+	expect(newList.get(2)).toEqual(previousThree);
+	expect(newList.length).toEqual(previousLength -1);
+	newList.remove(0);
+	expect(newList.head).toEqual(previousOne);
+});
 test.todo('SinglyLinkedList reverse method correctly reverses the order of the nodes in the list');
