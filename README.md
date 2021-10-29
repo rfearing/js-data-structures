@@ -15,7 +15,7 @@ If you are looking for a location to learn data structures in JavaScript, [this 
 Each Data Structure will have it's own README describing the data structure. Hopefully, this list will continue to grow.
 
 **Data Structures:**
-- [ ] Singly Linked List
+- [ ] [Singly Linked List](src/singlyLinkedList/README.md)
 - [ ] Double Linked List
 - [ ] Stack
 - [ ] Queue
