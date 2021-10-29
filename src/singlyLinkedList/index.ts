@@ -38,7 +38,7 @@ export class SinglyLinkedList<T> {
 
 	/**
 	 * Remove a node from the end of the list
-	 * @returns {SinglyLinkedNode}
+	 * @returns {SinglyLinkedNode} The removed node
 	 */
 	pop() {
 		if (this.isEmpty()) {
@@ -69,9 +69,25 @@ export class SinglyLinkedList<T> {
 
 	/**
 	 * Remove a node from the beginning of the list.
+	 * returns {SinglyLinkedNode} The removed node
 	 */
 	shift() {
-		// TODO
+		if(this.isEmpty()) {
+			return null;
+		}
+
+		let oldHead = this.head;
+		this.head = oldHead?.getNext() || null;
+		this.length--;
+
+		// Unlink the old head.
+		oldHead?.setNext();
+
+		// Reset tail if shifted the last node.
+		if(this.isEmpty()) {
+			this.tail = null;
+		}
+		return oldHead;
 	}
 
 	/**

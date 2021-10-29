@@ -28,7 +28,20 @@ test('SinglyLinkedList pop method correctly removes to the end of the list', () 
 	expect(newList.head).toBeNull();
 });
 
-test.todo('SinglyLinkedList shift method correctly removes from the beginning of the list');
+test('SinglyLinkedList shift method correctly removes from the beginning of the list', () => {
+	// Shouldn't do anything to an empty list.
+	newList.shift();
+	expect(newList.head).toBeNull();
+	// Add back to the list to have things to test.
+	newList.push('a');
+	newList.push('b');
+	newList.shift();
+	expect(newList.head?.getValue()).toEqual('b');
+	newList.shift();
+	// Check again that resets list after shifting the last node.
+	expect(newList.head).toBeNull();
+	expect(newList.tail).toBeNull();
+});
 test.todo('SinglyLinkedList unshift method correctly adds to the beginning of the list');
 test.todo('SinglyLinkedList get method correctly returns the value of a node at the correct index of the list');
 test.todo('SinglyLinkedList set method correctly sets the value of a node at the correct index of the list');
