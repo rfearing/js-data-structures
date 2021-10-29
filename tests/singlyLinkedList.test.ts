@@ -82,6 +82,7 @@ test('SinglyLinkedList insert method correctly inserts a node at the correct ind
 	// Outside of list scope:
 	expect(() => newList.insert('Bar', -1)).toThrowError();
 });
+
 test('SinglyLinkedList remove method correctly removes a node from the correct index of the list', () => {
 	const previousOne = newList.get(1);
 	const previousThree = newList.get(3);
@@ -93,4 +94,16 @@ test('SinglyLinkedList remove method correctly removes a node from the correct i
 	newList.remove(0);
 	expect(newList.head).toEqual(previousOne);
 });
-test.todo('SinglyLinkedList reverse method correctly reverses the order of the nodes in the list');
+
+test('SinglyLinkedList reverse method correctly reverses the order of the nodes in the list', () => {
+	const oldHead = newList.head;
+	const oldTail = newList.tail;
+	const oldLength = newList.length;
+	const secondToLast = newList.get(oldLength - 2);
+	newList.reverse();
+	expect(newList.head?.getValue()).toEqual(oldTail?.getValue());
+	expect(newList.tail?.getValue()).toEqual(oldHead?.getValue());
+	expect(newList.length).toEqual(oldLength);
+	// Traverse to check the middle nodes
+	expect(newList.head?.getNext()?.getValue()).toEqual(secondToLast?.getValue());
+});

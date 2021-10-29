@@ -197,8 +197,21 @@ export class SinglyLinkedList<T> {
 	 * Reverse the list to point in the opposite direction.
 	 * Note, this does not really have a real-world use-case.
 	 * Other than to learn, this could be asked, in some contexts, as an interview question.
+	 * @returns {SinglyLinkedList<T>}
 	 */
 	reverse() {
-		// TODO
+		// Swap head for tail:
+		let node = this.head;
+		this.head = this.tail;
+		this.tail = node;
+		let next;
+		let previous = null;
+		for(var i = 0; i < this.length; i++) {
+			next = node?.next; // For the first iteration, this will be this.head.next
+			node?.setNext(previous); // and this will set next to null, as it's the new tail.
+			previous = node;
+			node = next || null;
+		}
+		return this;
 	}
 }
