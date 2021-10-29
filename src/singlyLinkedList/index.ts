@@ -66,4 +66,61 @@ export class SinglyLinkedList<T> {
 
 		return current;
 	}
+
+	/**
+	 * Remove a node from the beginning of the list.
+	 */
+	shift() {
+		// TODO
+	}
+
+	/**
+	 * Add a node to the beginning of the list.
+	 */
+	unshift() {
+		// TODO
+	}
+
+	/**
+	 * Get a value from a node at a given position.
+	 * @param {number} index - Where the node is located in the list.
+	 */
+	get(index: number) {
+		// TODO
+	}
+
+	/**
+	 * Set a node at the current position.
+	 * @param {T} value - Value to replace at index.
+	 * @param {number} index - Where the node is located in the list
+	 */
+	set(value: T, index: number) {
+		// TODO
+	}
+
+	/**
+	 * Insert a new node at the specified position
+	 * @param {T} value - Value for the new node to place at index
+	 * @param {number} index - Where the node is located in the list
+	 */
+	insert(value: T, index: number) {
+		// TODO
+	}
+
+	/**
+	 * Remove a node from the list at a given index.
+	 * @param index - The index of the node we want to remove.
+	 */
+	remove(index: number) {
+		// TODO
+	}
+
+	/**
+	 * Reverse the list to point in the opposite direction.
+	 * Note, this does not really have a real-world use-case.
+	 * Other than to learn, this could be asked, in some contexts, as an interview question.
+	 */
+	reverse() {
+		// TODO
+	}
 }

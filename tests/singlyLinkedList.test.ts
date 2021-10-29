@@ -1,4 +1,4 @@
-import { SinglyLinkedList } from "../src/singlyLinkedList";
+import { SinglyLinkedList } from '../src/singlyLinkedList';
 
 let newList = new SinglyLinkedList();
 
@@ -26,4 +26,12 @@ test('SinglyLinkedList pop method correctly removes to the end of the list', () 
 	newList.pop();
 	// Nothing happens if we popped an empty list
 	expect(newList.head).toBeNull();
-})
+});
+
+test.todo('SinglyLinkedList shift method correctly removes from the beginning of the list');
+test.todo('SinglyLinkedList unshift method correctly adds to the beginning of the list');
+test.todo('SinglyLinkedList get method correctly returns the value of a node at the correct index of the list');
+test.todo('SinglyLinkedList set method correctly sets the value of a node at the correct index of the list');
+test.todo('SinglyLinkedList insert method correctly inserts a node at the correct index of the list');
+test.todo('SinglyLinkedList remove method correctly removes a node from the correct index of the list');
+test.todo('SinglyLinkedList reverse method correctly reverses the order of the nodes in the list');
