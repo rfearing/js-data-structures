@@ -113,9 +113,19 @@ export class SinglyLinkedList<T> {
 	/**
 	 * Get a value from a node at a given position.
 	 * @param {number} index - Where the node is located in the list.
+	 * @returns {SinglyLinkedNode | null}
 	 */
 	get(index: number) {
-		// TODO
+		if(this.isEmpty() || index > this.length) {
+			return null;
+		}
+		let current = this.head;
+
+		// If index is 0, we'll never loop
+		for(let i = 0; i < index; i++) {
+			current = current?.getNext() || null;
+		}
+		return current;
 	}
 
 	/**

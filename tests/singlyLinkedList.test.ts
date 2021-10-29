@@ -54,7 +54,13 @@ test('SinglyLinkedList unshift method correctly adds to the beginning of the lis
 	expect(newList.head?.getNext()?.getValue()).toEqual('Dooby');
 });
 
-test.todo('SinglyLinkedList get method correctly returns the value of a node at the correct index of the list');
+test('SinglyLinkedList get method correctly returns the value of a node at the correct index of the list', () => {
+	expect(newList.get(0)?.getValue()).toEqual('Doo');
+	expect(newList.get(1)?.getValue()).toEqual('Dooby');
+	// Index larger than length should return null
+	expect(newList.get(10)).toBeNull();
+});
+
 test.todo('SinglyLinkedList set method correctly sets the value of a node at the correct index of the list');
 test.todo('SinglyLinkedList insert method correctly inserts a node at the correct index of the list');
 test.todo('SinglyLinkedList remove method correctly removes a node from the correct index of the list');
