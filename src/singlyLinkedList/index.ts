@@ -21,7 +21,7 @@ export class SinglyLinkedList<T> {
 	/**
 	 * Insert a node at the end of the list
 	 * @param {T} val
-	 * @returns {SinglyLinkedList<T>}
+	 * @returns {SinglyLinkedNode}
 	 */
 	push(val:T) {
 		let newNode = new Node(val);
@@ -33,7 +33,7 @@ export class SinglyLinkedList<T> {
 			this.tail = newNode;
 		}
 		this.length++;
-		return this;
+		return this.head;
 	}
 
 	/**
@@ -92,9 +92,22 @@ export class SinglyLinkedList<T> {
 
 	/**
 	 * Add a node to the beginning of the list.
+	 * @param {T} val
+	 * @returns {SinglyLinkedNode}
 	 */
-	unshift() {
-		// TODO
+	unshift(value: T) {
+		const newNode = new Node(value);
+		// Tail and head are the newNode if empty.
+		if (this.isEmpty()) {
+			this.head = newNode;
+			this.tail = this.head;
+		}
+		// Set newNode next to the current head's next
+		newNode.setNext(this.head);
+		// Then set as the new head
+		this.head = newNode;
+		this.length++;
+		return this.head;
 	}
 
 	/**
