@@ -1,6 +1,6 @@
 {
   "name": "@rfearing/js-data-structures",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Examples of Data Structures in JavaScript",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
