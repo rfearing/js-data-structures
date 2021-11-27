@@ -6,4 +6,14 @@ From [geeksongeeks.com][geeks]:
 
 <img src="../../assets/singly-linked-list.png" width="300" alt="Graph representation of a singly linked list" />
 
+### Singly Linked List vs Array
+
+| Lists                                       | Array                                       |
+|---------------------------------------------|---------------------------------------------|
+| Do not have indexes                         | Indexed in order                            |
+| Connected via nodes with a **next** pointer | Insertion &amp; deletion can be expensive   |
+| Random access is not allowed                | Can quickly be accessed at a specific index |
+
+Singly linked list is preferred when we need to save memory and searching is not required as pointer of single index is stored.
+
 [geeks]: https://www.geeksforgeeks.org/types-of-linked-list/#:~:text=Singly%20Linked%20List%3A%20It%20is,next%20node%20in%20the%20sequence.
