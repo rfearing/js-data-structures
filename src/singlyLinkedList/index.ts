@@ -21,11 +21,29 @@ export class SinglyLinkedList<T> {
 	}
 
 	/**
+	 * Get a node at a given position.
+	 * @param {number} index - Where the node is located in the list.
+	 * @returns {SinglyLinkedNode | null}
+	 */
+	#getNode(index: number) {
+		if(this.isEmpty() || index >= this.#length || index < 0) {
+			return null;
+		}
+		let current: Node<T> | null = this.#head;
+		// If index is 0, we'll never loop
+		for(let i = 0; i < index; i++) {
+			assert(current); // We are sure we're never out of bounds
+			current = current.getNext();
+		}
+		return current;
+	}
+
+	/**
 	 * Insert a node at the end of the list
 	 * @param {T} val
 	 * @returns {SinglyLinkedNode}
 	 */
-	push(val:T) {
+	insertLast(val:T) {
 		const newNode = new Node(val);
 		if (this.isEmpty()) {
 			this.#head = newNode;
@@ -43,7 +61,7 @@ export class SinglyLinkedList<T> {
 	 * Remove a node from the end of the list
 	 * @returns {SinglyLinkedNode} The removed node
 	 */
-	pop() {
+	removeLast() {
 		if (this.isEmpty()) {
 			return null;
 		}
@@ -83,7 +101,7 @@ export class SinglyLinkedList<T> {
 	 * Remove a node from the beginning of the list.
 	 * returns {SinglyLinkedNode} The removed node
 	 */
-	shift() {
+	removeFirst() {
 		if(this.isEmpty()) {
 			return null;
 		}
@@ -107,7 +125,7 @@ export class SinglyLinkedList<T> {
 	 * @param {T} val
 	 * @returns {SinglyLinkedNode}
 	 */
-	unshift(value: T) {
+	insertFirst(value: T) {
 		const newNode = new Node(value);
 		// Tail and head are the newNode if empty.
 		if (this.isEmpty()) {
@@ -120,24 +138,6 @@ export class SinglyLinkedList<T> {
 		this.#head = newNode;
 		this.#length++;
 		return this.#head;
-	}
-
-	/**
-	 * Get a node at a given position.
-	 * @param {number} index - Where the node is located in the list.
-	 * @returns {SinglyLinkedNode | null}
-	 */
-	 #getNode(index: number) {
-		if(this.isEmpty() || index >= this.#length || index < 0) {
-			return null;
-		}
-		let current: Node<T> | null = this.#head;
-		// If index is 0, we'll never loop
-		for(let i = 0; i < index; i++) {
-			assert(current); // We are sure we're never out of bounds
-			current = current.getNext();
-		}
-		return current;
 	}
 
 	/**
@@ -242,4 +242,10 @@ export class SinglyLinkedList<T> {
 		}
 		return null;
 	}
+
+	// Aliases
+	push = this.insertLast;
+	pop = this.removeLast;
+	shift = this.removeFirst;
+	unshift = this.insertFirst;
 }
