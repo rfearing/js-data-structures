@@ -4,8 +4,8 @@ export class SinglyLinkedNode<T> {
     this.next = null;
   }
 
-  next: SinglyLinkedNode<T> | null;
-  value: T | null;
+  private next: SinglyLinkedNode<T> | null;
+  private value: T | null;
 
   setValue(value: T) {
     this.value = value;

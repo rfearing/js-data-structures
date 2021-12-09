@@ -3,21 +3,21 @@ import assert from 'assert';
 
 export class SinglyLinkedList<T> {
   constructor() {
-    this.#head = null;
-    this.#tail = null;
-    this.#length = 0;
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
   }
-  // # notates private class:
-  #head: Node<T> | null;
-  #tail: Node<T> | null;
-  #length: number;
+
+  private head: Node<T> | null;
+  private tail: Node<T> | null;
+  private length: number;
 
   /**
    * Return whether or not the SinglyLinkedList has any nodes.
    * @returns {boolean}
    */
   isEmpty() {
-    return this.#length === 0;
+    return this.length === 0;
   }
 
   /**
@@ -25,11 +25,11 @@ export class SinglyLinkedList<T> {
    * @param {number} index - Where the node is located in the list.
    * @returns {SinglyLinkedNode | null}
    */
-  #getNode(index: number) {
-    if (this.isEmpty() || index >= this.#length || index < 0) {
+  private getNode(index: number) {
+    if (this.isEmpty() || index >= this.length || index < 0) {
       return null;
     }
-    let current: Node<T> | null = this.#head;
+    let current: Node<T> | null = this.head;
     // If index is 0, we'll never loop
     for (let i = 0; i < index; i++) {
       assert(current); // We are sure we're never out of bounds
@@ -43,7 +43,7 @@ export class SinglyLinkedList<T> {
    * @returns {number}
    */
   getLength() {
-    return this.#length;
+    return this.length;
   }
 
   /**
@@ -54,15 +54,15 @@ export class SinglyLinkedList<T> {
   insertLast(val: T) {
     const newNode = new Node(val);
     if (this.isEmpty()) {
-      this.#head = newNode;
-      this.#tail = this.#head;
+      this.head = newNode;
+      this.tail = this.head;
     } else {
-      assert(this.#tail);
-      this.#tail.setNext(newNode);
-      this.#tail = newNode;
+      assert(this.tail);
+      this.tail.setNext(newNode);
+      this.tail = newNode;
     }
-    this.#length++;
-    return this.#head;
+    this.length++;
+    return this.head;
   }
 
   /**
@@ -73,10 +73,10 @@ export class SinglyLinkedList<T> {
     if (this.isEmpty()) {
       return null;
     }
-    assert(this.#head);
+    assert(this.head);
 
-    let newTail = this.#head;
-    let current: Node<T> | null = this.#head;
+    let newTail = this.head;
+    let current: Node<T> | null = this.head;
     let persist = true;
 
     // We want to get to the second to last node:
@@ -93,13 +93,13 @@ export class SinglyLinkedList<T> {
 
     // and then set it to the new tail:
     newTail.setNext();
-    this.#tail = newTail;
-    this.#length--;
+    this.tail = newTail;
+    this.length--;
 
     // Reset if popped the last node.
     if (this.isEmpty()) {
-      this.#head = null;
-      this.#tail = null;
+      this.head = null;
+      this.tail = null;
     }
 
     return current;
@@ -113,17 +113,17 @@ export class SinglyLinkedList<T> {
     if (this.isEmpty()) {
       return null;
     }
-    assert(this.#head);
-    const oldHead = this.#head;
-    this.#head = oldHead.getNext() || null;
-    this.#length--;
+    assert(this.head);
+    const oldHead = this.head;
+    this.head = oldHead.getNext() || null;
+    this.length--;
 
     // Unlink the old head.
     oldHead.setNext();
 
     // Reset tail if shifted the last node.
     if (this.isEmpty()) {
-      this.#tail = null;
+      this.tail = null;
     }
     return oldHead;
   }
@@ -137,15 +137,15 @@ export class SinglyLinkedList<T> {
     const newNode = new Node(value);
     // Tail and head are the newNode if empty.
     if (this.isEmpty()) {
-      this.#head = newNode;
-      this.#tail = this.#head;
+      this.head = newNode;
+      this.tail = this.head;
     }
     // Set newNode next to the current head's next
-    newNode.setNext(this.#head);
+    newNode.setNext(this.head);
     // Then set as the new head
-    this.#head = newNode;
-    this.#length++;
-    return this.#head;
+    this.head = newNode;
+    this.length++;
+    return this.head;
   }
 
   /**
@@ -154,7 +154,7 @@ export class SinglyLinkedList<T> {
    * @returns {T} - the value passed into the SinglyLinkedNode constructor
    */
   get(index: number) {
-    const searchedNode = this.#getNode(index);
+    const searchedNode = this.getNode(index);
     return searchedNode ? searchedNode.getValue() : null;
   }
 
@@ -166,7 +166,7 @@ export class SinglyLinkedList<T> {
    */
   set(value: T, index: number) {
     // We can utilize the logic from our get method
-    const foundNode = this.#getNode(index);
+    const foundNode = this.getNode(index);
     if (!foundNode) {
       return null;
     }
@@ -180,7 +180,7 @@ export class SinglyLinkedList<T> {
    * @param {number} index - Where the node is located in the list
    */
   insert(value: T, index: number) {
-    if (index > this.#length || index < 0) {
+    if (index > this.length || index < 0) {
       throw new Error('The index was outside of the List');
     }
 
@@ -188,18 +188,18 @@ export class SinglyLinkedList<T> {
       return !!this.unshift(value);
     }
 
-    if (index === this.#length) {
+    if (index === this.length) {
       return !!this.push(value);
     }
 
     const newNode = new Node(value);
-    const previous = this.#getNode(index - 1);
+    const previous = this.getNode(index - 1);
     if (previous) {
       newNode.setNext(previous.getNext());
       previous.setNext(newNode);
     }
 
-    this.#length++;
+    this.length++;
     return true;
   }
 
@@ -213,18 +213,18 @@ export class SinglyLinkedList<T> {
     if (index === 0) {
       return this.shift();
     }
-    if (index === this.#length - 1) {
+    if (index === this.length - 1) {
       return this.pop();
     }
 
-    const previous = this.#getNode(index - 1);
+    const previous = this.getNode(index - 1);
     assert(previous);
 
     const removed = previous.getNext();
     assert(removed);
 
     previous.setNext(removed.getNext());
-    this.#length--;
+    this.length--;
     return removed;
   }
 
@@ -236,14 +236,14 @@ export class SinglyLinkedList<T> {
    */
   reverse() {
     // Swap head for tail:
-    let node = this.#head;
-    this.#head = this.#tail;
-    this.#tail = node;
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
     let next;
     let previous = null;
-    for (let i = 0; i < this.#length; i++) {
+    for (let i = 0; i < this.length; i++) {
       assert(node);
-      next = node.next; // First iteration, this will be this.#head.next
+      next = node.getNext(); // First iteration, this will be this.head.next
       node.setNext(previous); // First iteration, will set next to null, as it's the new tail.
       previous = node;
       node = next;
